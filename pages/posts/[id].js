@@ -3,6 +3,8 @@ import utilStyles from '../../styles/utils.module.css';
 import Layout from "../../components/layout";
 import Head from 'next/head';
 import Date from "../../components/date";
+import { MDXRemote } from 'next-mdx-remote'
+import CodeBlock from '../../components/CodeBlock';
 
 export async function getStaticPaths() {
     const paths = getAllPostIds();
@@ -21,7 +23,13 @@ export async function getStaticProps({ params }) {
         },
     };
 }
+const Button =({children}) => {
+    return <button onClick={()=>alert(`to ${children}`)}>{children}</button>
+}
+const components = { Button, CodeBlock }
+
 export default function Post({ postData }) {
+    console.log(postData.mdxSource)
     return (
         <Layout>
             <Head>
@@ -32,7 +40,8 @@ export default function Post({ postData }) {
                 <div className={utilStyles.lightText}>
                     <Date dateString={postData.date} />
                 </div>
-                <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+                { postData.contentHtml && <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />}
+                { postData.mdxSource && <MDXRemote {...postData.mdxSource} components={components} />}
             </article>
         </Layout>
     );
