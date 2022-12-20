@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://react-test-theta-one.vercel.app
+
+# Sitemaps
+Sitemap: https://react-test-theta-one.vercel.app/sitemap.xml

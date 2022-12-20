@@ -4,7 +4,6 @@ import Layout from "../../components/layout";
 import Head from 'next/head';
 import Date from "../../components/date";
 import { MDXRemote } from 'next-mdx-remote'
-import CodeBlock from '../../components/CodeBlock';
 
 export async function getStaticPaths() {
     const paths = getAllPostIds();
