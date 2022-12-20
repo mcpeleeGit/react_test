@@ -22,10 +22,6 @@ export async function getStaticProps({ params }) {
         },
     };
 }
-const Button =({children}) => {
-    return <button onClick={()=>alert(`to ${children}`)}>{children}</button>
-}
-const components = { Button, CodeBlock }
 
 export default function Post({ postData }) {
     console.log(postData.mdxSource)
@@ -40,7 +36,7 @@ export default function Post({ postData }) {
                     <Date dateString={postData.date} />
                 </div>
                 { postData.contentHtml && <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />}
-                { postData.mdxSource && <MDXRemote {...postData.mdxSource} components={components} />}
+
             </article>
         </Layout>
     );
